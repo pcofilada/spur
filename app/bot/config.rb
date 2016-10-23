@@ -14,13 +14,13 @@ Facebook::Messenger::Thread.set(
   call_to_actions: [
     {
       type: 'postback',
-      title: 'Find a Business',
-      payload: 'DEVELOPER_DEFINED_PAYLOAD_FOR_FIND_BUSINESS'
+      title: 'Display Businesses',
+      payload: 'DEVELOPER_DEFINED_PAYLOAD_FOR_DISPLAY_BUSINESSES'
     },
     {
       type: 'postback',
-      title: 'Find an Event',
-      payload: 'DEVELOPER_DEFINED_PAYLOAD_FOR_FIND_AN_EVENT'
+      title: 'Display Events',
+      payload: 'DEVELOPER_DEFINED_PAYLOAD_FOR_DISPLAY_EVENTS'
     },
     {
       type: 'postback',

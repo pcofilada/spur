@@ -2,9 +2,13 @@ Bot.on :message do |message|
   if message.sender['id'] != '168331146959068'
     if message.quick_reply
       case message.quick_reply
-      when 'BUSINESS_QUICK_REPLY'
-        business_response(message)
+      when 'BUSINESS_QUICK_REPLY', 'LOAD_MORE_BUSINESS_YES'
+        businesses = Business.order("RANDOM()").limit(10)
+
+        business_response(businesses, message)
         load_more_businesses(message)
+      when 'LOAD_MORE_BUSINESS_NO'
+        end_conversation(message)
       end
     else
       find_business(message)
@@ -14,7 +18,7 @@ end
 
 private
 
-  def business_response(message)
+  def business_response(businesses, message)
     Bot.deliver(
       recipient: { id: message.sender['id'] },
       message: {
@@ -22,47 +26,56 @@ private
           type: 'template',
           payload: {
             template_type: 'generic',
-            elements: [
-              {
-                title: 'Welcome to Peter\'s Hats',
-                item_url: 'https://petersfancybrownhats.com',
-                image_url: 'http://lorempixel.com/400/200/',
-                subtitle: 'We\'ve got the right hat for everyone.',
-                buttons: [
-                  {
-                    type: 'web_url',
-                    url: 'https://wanderly.co',
-                    title: 'Visit Website'
-                  },
-                  {
-                    type: 'web_url',
-                    url: 'https://www.facebook.com/wanderly.co',
-                    title: 'Visit Page'
-                  },
-                  {
-                    type: 'phone_number',
-                    title: 'Call',
-                    payload: '+639102819266'
-                  }
-                ]
-              }
-            ]
+            elements: render_businesses(businesses)
           }
         }
       }
     )
   end
 
-  def find_business(message)
-
-    if message.text.include? 'Find a business that offers '
-      selector = /(?<=\offers\s)(\w+)/.match(message.text)
-    elsif message.text.include? 'Find a business located at '
-      selector = /located at (.*)/.match(message.text)
+  def render_businesses(businesses)
+    rendered_businesses = []
+    businesses.each do |business|
+      rendered_businesses << {
+        title: business.name,
+        item_url: business.website,
+        image_url: business.image,
+        subtitle: business.description,
+        buttons: [
+          {
+            type: 'web_url',
+            url: business.website,
+            title: 'Visit Website'
+          },
+          {
+            type: 'web_url',
+            url: business.facebook_page,
+            title: 'Visit Page'
+          },
+          {
+            type: 'phone_number',
+            title: 'Call',
+            payload: business.contact_number
+          }
+        ]
+      }
     end
 
-    identifier = message.text.slice!(selector[1])
-    business_response(message)
+    return rendered_businesses
+  end
+
+  def find_business(message)
+    if message.text.include? 'Find a business that caters '
+      selector = /(?<=\ caters\s)(\w+)/.match(message.text)
+      identifier = message.text.slice!(selector[1])
+      businesses = Business.where("'#{identifier}' = ANY (services)").order("RANDOM()").limit(10)
+    elsif message.text.include? 'Find a business located at '
+      selector = /located at (.*)/.match(message.text)
+      identifier = message.text.slice!(selector[1])
+      businesses = Business.where("location like ?", "%#{identifier}%").order("RANDOM()").limit(10)
+    end
+
+    business_response(businesses, message)
   end
 
   def load_more_businesses(message)
@@ -79,9 +92,18 @@ private
           {
             content_type: 'text',
             title: 'No Thanks',
-            payload: 'LOAD_MORE_BUSINESS_YES'
+            payload: 'LOAD_MORE_BUSINESS_NO'
           }
         ]
+      }
+    )
+  end
+
+  def end_conversation(message)
+    Bot.deliver(
+      recipient: { id: message.sender['id'] },
+      message: {
+        text: 'Just message us if you need something and we will help you find it.'
       }
     )
   end
