@@ -19,6 +19,7 @@
 # Ignore database.yml file
 config/database.yml
 
+config/local_env.yml
 .ruby-version
 *.DS_Store
 vendor/bundle
