@@ -1,0 +1,12 @@
+{
+  "name": "spur",
+  "version": "1.0.0",
+  "description": "Helps you find businesses that caters different services that you are interested with using web app and facebook messenger bot.",
+  "main": "index.js",
+  "repository": {
+    "url": "https://github.com/pcofilada/spur",
+    "type": "git"
+  },
+  "author": "Patrick Ofilada",
+  "license": "MIT"
+}

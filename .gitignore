@@ -5,11 +5,11 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
-/.bundle
+api/.bundle
 
 # Ignore all logfiles and tempfiles.
-/log/*
-/tmp/*
+api/log/*
+api/tmp/*
 !/log/.keep
 !/tmp/.keep
 
@@ -17,14 +17,14 @@
 .byebug_history
 
 # Ignore database.yml file
-config/database.yml
+api/config/database.yml
 
-config/local_env.yml
+api/config/local_env.yml
 .ruby-version
 *.DS_Store
-vendor/bundle
-public/system
+api/vendor/bundle
+api/public/system
 
-/node_modules
-/vendor/assets/stylesheets/brunch
-/vendor/assets/javascripts/brunch
+/web/node_modules
+/web/bundle.js
+/web/npm-debug.log
