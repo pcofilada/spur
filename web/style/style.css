@@ -1,0 +1,82 @@
+html,
+body,
+.container {
+  background: #f4f4f4 !important;
+}
+
+.businesses {
+  display: flex;
+  justify-content: flex-start;
+  overflow: hidden;
+  flex-flow: row wrap;
+}
+
+.businesses > .business {
+  width: 33.333333%;
+  align-items: stretch;
+  padding: 0 10px;
+  margin: 10px 0;
+}
+
+.businesses > .business > .wrapper {
+  transition: all linear 150ms;
+}
+
+.businesses > .business > .wrapper:hover {
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  transform: translate(0, -5px);
+  z-index: 999;
+}
+
+.businesses > .business > .wrapper > .image {
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  background-color: #ffffff;
+}
+
+.businesses > .business > .wrapper > .details {
+  background: #ffffff;
+  padding: 15px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.businesses > .business > .wrapper > .details > .name {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.businesses > .business > .wrapper > .details > .description {
+  font-size: 14px;
+}
+
+.businesses > .business > .wrapper > .details > .meta {
+  font-size: 12px;
+  padding-top: 15px;
+}
+
+.businesses > .business > .wrapper > .details > .meta > .meta-group {
+  display: flex;
+}
+
+.businesses > .business > .wrapper > .details > .meta > .meta-group > * {
+  flex: 1;
+}
+
+.businesses > .business > .wrapper > .details > .meta > .meta-group i {
+  padding-right: 10px;
+}
+
+.businesses > .business > .wrapper > .details > .meta > .services {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+}
+
+.businesses > .business > .wrapper > .details > .meta > .services > .service {
+  background: #5cb85c;
+  color: #ffffff;
+  padding: 2px 6px;
+  margin: 2px;
+}
