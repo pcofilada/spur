@@ -3,4 +3,5 @@ Rails.application.routes.draw do
 
   get :businesses, to: 'businesses#index'
   post :businesses, to: 'businesses#submit'
+  get :search, to: 'search#index'
 end

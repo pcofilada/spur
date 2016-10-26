@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import * as actions from '../actions'
 
+import Search from '../containers/search'
+
 class Business extends Component {
   componentWillMount() {
     this.props.fetchBusinesses()
@@ -19,7 +21,6 @@ class Business extends Component {
 
   renderList() {
     return _.map(this.props.businesses, (business, key) => {
-      console.log(business)
       const imageStyle = {
         backgroundImage: `url('${business.image}')`
       }
@@ -65,10 +66,30 @@ class Business extends Component {
     })
   }
 
-  render() {
+  renderBlankslate() {
     return (
-      <div className="businesses">
-        {this.renderList()}
+      <div className="blankslate">
+        <div className="icon"><i className="ion-sad-outline"></i></div>
+        <p className="hint">Sorry, we're not able to find what you were looking for.</p>
+      </div>
+    )
+  }
+
+  render() {
+    let businesses
+
+    if(this.props.businesses != null && this.props.businesses.length > 0) {
+      businesses = (this.renderList())
+    } else {
+      businesses = (this.renderBlankslate())
+    }
+
+    return (
+      <div className="wrapper">
+        <Search />
+        <div className="businesses">
+          {businesses}
+        </div>
       </div>
     )
   }

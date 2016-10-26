@@ -80,3 +80,40 @@ body,
   padding: 2px 6px;
   margin: 2px;
 }
+
+.search {
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search > .form-group > .search-input {
+  width: 700px;
+  border-radius: 0px;
+  line-height: 20px;
+  padding: 10px 15px;
+  font-weight: 300;
+  font-size: 15px;
+  border: solid 1px #ddd;
+  transition: border 200ms;
+}
+
+.search > .form-group > .search-input:hover,
+.search > .form-group > .search-input:focus {
+  border: solid 1px #bbb
+}
+
+.blankslate {
+  height: 350px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  opacity: 0.5;
+}
+
+.blankslate > .icon {
+  font-size: 100px;
+}
