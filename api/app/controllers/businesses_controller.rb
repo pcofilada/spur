@@ -7,8 +7,8 @@ class BusinessesController < ApplicationController
   end
 
   def submit
-    binding.pry
     business = Business.new(business_params)
+    business.services = params[:business][:services].split(',')
 
     if business.save
       render json: business, status: 201

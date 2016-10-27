@@ -5,10 +5,29 @@ import { Link } from 'react-router'
 import * as actions from '../actions'
 
 import Search from '../containers/search'
+import Form from '../containers/form'
+import Modal from '../components/modal'
 
 class Business extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = { isModalOpen: false }
+
+    this.openModal = this.openModal.bind(this)
+    this.closeModal = this.closeModal.bind(this)
+  }
+
   componentWillMount() {
     this.props.fetchBusinesses()
+  }
+
+  openModal() {
+    this.setState({ isModalOpen: true })
+  }
+
+  closeModal() {
+    this.setState({ isModalOpen: false })
   }
 
   renderServices(services) {
@@ -90,6 +109,10 @@ class Business extends Component {
         <div className="businesses">
           {businesses}
         </div>
+        <button className="submit-business btn btn-primary" onClick={this.openModal}><i className="ion-android-add"></i></button>
+        <Modal isOpen={this.state.isModalOpen} closeModal={this.closeModal}>
+          <Form />
+        </Modal>
       </div>
     )
   }

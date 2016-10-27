@@ -47,6 +47,7 @@ body,
 }
 
 .businesses > .business > .wrapper > .details > .description {
+  min-height: 60px;
   font-size: 14px;
 }
 
@@ -116,4 +117,83 @@ body,
 
 .blankslate > .icon {
   font-size: 100px;
+}
+
+.modal-wrapper {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+.modal-wrapper > .-modal-backdrop {
+  background: rgba(255,255,255,0.7);
+  width: 100%;
+  height: 100%;
+}
+
+.modal-wrapper > .-main-modal {
+  width: 500px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  margin: 0 auto;
+  background: #FFFFFF;
+  padding: 20px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+form > h3 {
+  text-align: center;
+  font-weight: 400;
+}
+
+form label {
+  font-size: 14px;
+}
+
+form .form-control {
+  border-radius: 0px;
+  font-weight: 300;
+  font-size: 15px;
+  border: solid 1px #ddd;
+  transition: border 200ms;
+}
+
+form .form-control:hover,
+form .form-control:focus {
+  border: solid 1px #bbb
+}
+
+
+form .form-group > .error-hint {
+  color: red;
+}
+
+form textarea {
+  resize: none;
+  height: 85px;
+}
+
+form .remaining {
+  float: right;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.submit-business {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  font-size: 30px;
+  border-radius: 100%;
+  height: 60px;
+  width: 60px;
+  border: 0px;
+  color: #FFFFFF;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  outline: none;
 }

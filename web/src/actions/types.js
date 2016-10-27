@@ -1,2 +1,3 @@
 export const FETCH_BUSINESSES = 'FETCH_BUSINESSES'
 export const SEARCH = 'SEARCH'
+export const SUBMIT_BUSINESS = 'SUBMIT_BUSINESS'
