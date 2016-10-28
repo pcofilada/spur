@@ -68,11 +68,11 @@ private
     if message.text.include? 'Find a business that caters '
       selector = /(?<=\ caters\s)(\w+)/.match(message.text)
       identifier = message.text.slice!(selector[1])
-      businesses = Business.where("'#{identifier}' = ANY (services)").order("RANDOM()").limit(10)
+      businesses = Business.published.where("'#{identifier}' = ANY (services)").order("RANDOM()").limit(10)
     elsif message.text.include? 'Find a business located at '
       selector = /located at (.*)/.match(message.text)
       identifier = message.text.slice!(selector[1])
-      businesses = Business.where("location like ?", "%#{identifier}%").order("RANDOM()").limit(10)
+      businesses = Business.published.where("location like ?", "%#{identifier}%").order("RANDOM()").limit(10)
     end
 
     business_response(businesses, message)

@@ -5,7 +5,7 @@ Bot.on :postback do |postback|
   when 'DEVELOPER_DEFINED_PAYLOAD_FOR_HELP'
     help_response(postback)
   when 'DEVELOPER_DEFINED_PAYLOAD_FOR_DISPLAY_BUSINESSES'
-    businesses = Business.order("RANDOM()").limit(10)
+    businesses = Business.published.order("RANDOM()").limit(10)
 
     business_response(businesses, postback)
     load_more_businesses(postback)
